@@ -18,3 +18,5 @@ def send_tg(item: Req):
 
     for i in ids:
         bot.send_message(i, item.Message)
+
+    return "ok"
