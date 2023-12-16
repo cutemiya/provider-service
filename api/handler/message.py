@@ -9,7 +9,7 @@ bot = new_bot()
 
 
 class Req(BaseModel):
-    Message: str
+    message: str
 
 
 @base_router.post("/tg/send")
