@@ -17,6 +17,6 @@ def send_tg(item: Req):
     ids = get_all_chat_ids()
 
     for i in ids:
-        bot.send_message(i, item.Message)
+        bot.send_message(i, item.message)
 
     return {"message": "ok"}
