@@ -1,10 +1,10 @@
-import smtplib
+from smtp import *
 
 from base import login, email_password
 
 
-def new_mail() -> smtplib.SMTP:
-    smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
+def new_mail() -> SMTP:
+    smtp_obj = SMTP('smtp.gmail.com', 587)
     smtp_obj.starttls()
 
     smtp_obj.login(login, email_password)
@@ -12,11 +12,11 @@ def new_mail() -> smtplib.SMTP:
     return smtp_obj
 
 
-def close(smtp: smtplib.SMTP):
+def close(smtp: SMTP):
     smtp.quit()
 
 
-def send_message(smtp: smtplib.SMTP, mail: str, message: str):
+def send_message(smtp: SMTP, mail: str, message: str):
     msg = f"""From: info@it.huba.ru
     To: user@example.com\n
     {message}

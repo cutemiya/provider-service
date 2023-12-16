@@ -24,7 +24,11 @@ def get_all_emails(email: str) -> typing.List[str]:
     with conn:
         with conn.cursor() as cursor:
             cursor.execute(f'select c.id from "CompanyDetails" c join "Account" A on A.id = c.account_id where email =' + f"'{email}'")
-            company_id = cursor.fetchone()[0]
+            company_id = cursor.fetchone()
+            if company_id is None:
+                return []
+
+            company_id = company_id[0]
 
             cursor.execute(f'select A.email from "_CompanyDetailsToUserDetails" cdud join "UserDetails" UD on UD.id = cdud."B" join "Account" A on A.id = UD.account_id where cdud."A" = {company_id}')
             return [i[0] for i in cursor.fetchall()]
